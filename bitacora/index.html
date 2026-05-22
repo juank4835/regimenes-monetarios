@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bitácora — Explantación mamaria</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #262624;
+    --bg-elev: #2e2e2c;
+    --bg-card: #303030;
+    --ink: #e8e6e1;
+    --ink-dim: #a8a59f;
+    --ink-faint: #6b6862;
+    --rule: #3a3a37;
+    --orange: #FF8C1A;
+    --green: #7fb069;
+    --red: #d96f6f;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+  .container {
+    max-width: 820px;
+    margin: 0 auto;
+    padding: 48px 24px 96px;
+  }
+
+  /* HEADER */
+  .eyebrow {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--orange);
+    margin-bottom: 18px;
+  }
+  h1.title {
+    font-family: 'Fraunces', serif;
+    font-weight: 600;
+    font-size: clamp(38px, 6vw, 56px);
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    margin-bottom: 22px;
+  }
+  .meta-bar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px 28px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    color: var(--ink-dim);
+    padding-bottom: 22px;
+  }
+  .meta-bar span strong {
+    color: var(--ink);
+    font-weight: 500;
+  }
+  .orange-rule {
+    height: 2px;
+    background: var(--orange);
+    width: 64px;
+    margin-bottom: 48px;
+  }
+
+  /* SECCIONES */
+  section { margin-bottom: 56px; }
+  h2 {
+    font-family: 'Fraunces', serif;
+    font-weight: 600;
+    font-size: 26px;
+    letter-spacing: -0.01em;
+    margin-bottom: 24px;
+    display: flex;
+    align-items: baseline;
+    gap: 14px;
+  }
+  h2::before {
+    content: "";
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    background: var(--orange);
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  /* CONTEXTO CARD */
+  .context-card {
+    background: var(--bg-elev);
+    border: 1px solid var(--rule);
+    border-radius: 8px;
+    padding: 28px;
+    margin-bottom: 16px;
+  }
+  .context-row {
+    display: grid;
+    grid-template-columns: 180px 1fr;
+    gap: 16px;
+    padding: 12px 0;
+    border-bottom: 1px solid var(--rule);
+  }
+  .context-row:last-child { border-bottom: none; }
+  .context-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-dim);
+    padding-top: 2px;
+  }
+  .context-value {
+    font-size: 15px;
+    color: var(--ink);
+  }
+
+  /* CRONOLOGÍA */
+  .timeline {
+    position: relative;
+    padding-left: 32px;
+  }
+  .timeline::before {
+    content: "";
+    position: absolute;
+    left: 8px;
+    top: 8px;
+    bottom: 8px;
+    width: 1px;
+    background: var(--rule);
+  }
+  .event {
+    position: relative;
+    padding: 14px 0 14px 8px;
+    margin-bottom: 8px;
+  }
+  .event::before {
+    content: "";
+    position: absolute;
+    left: -28px;
+    top: 22px;
+    width: 11px;
+    height: 11px;
+    border-radius: 50%;
+    background: var(--bg);
+    border: 2px solid var(--ink-faint);
+  }
+  .event.done::before {
+    background: var(--orange);
+    border-color: var(--orange);
+    box-shadow: 0 0 0 4px rgba(255, 140, 26, 0.15);
+  }
+  .event.current::before {
+    background: var(--bg);
+    border-color: var(--orange);
+    animation: pulse 1.8s ease-in-out infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(255,140,26,0.4); }
+    50% { box-shadow: 0 0 0 8px rgba(255,140,26,0); }
+  }
+  .event-time {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    color: var(--orange);
+    letter-spacing: 0.05em;
+    margin-bottom: 4px;
+  }
+  .event-title {
+    font-family: 'Fraunces', serif;
+    font-size: 17px;
+    font-weight: 500;
+    color: var(--ink);
+    margin-bottom: 4px;
+  }
+  .event-note {
+    font-size: 13px;
+    color: var(--ink-dim);
+  }
+
+  /* CAMPOS PARA LLENAR */
+  .fill-grid {
+    display: grid;
+    gap: 12px;
+  }
+  .fill-row {
+    background: var(--bg-card);
+    border-left: 2px solid var(--rule);
+    padding: 14px 18px;
+    border-radius: 0 6px 6px 0;
+  }
+  .fill-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ink-dim);
+    margin-bottom: 6px;
+  }
+  .fill-blank {
+    min-height: 22px;
+    color: var(--ink-faint);
+    font-style: italic;
+    font-size: 14px;
+  }
+
+  /* NOTAS PERSONALES */
+  .notes-panel {
+    background: linear-gradient(135deg, rgba(255,140,26,0.04), rgba(127,176,105,0.02));
+    border: 1px solid var(--rule);
+    border-left: 3px solid var(--orange);
+    border-radius: 6px;
+    padding: 24px 28px;
+  }
+  .notes-panel p {
+    color: var(--ink-dim);
+    font-size: 14px;
+    font-style: italic;
+    line-height: 1.7;
+  }
+
+  /* FOOTER */
+  footer {
+    margin-top: 80px;
+    padding-top: 24px;
+    border-top: 1px solid var(--rule);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--ink-faint);
+    letter-spacing: 0.05em;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  @media (max-width: 600px) {
+    .container { padding: 32px 18px 64px; }
+    .context-row { grid-template-columns: 1fr; gap: 4px; }
+    h2 { font-size: 22px; }
+  }
+
+  @media print {
+    body { background: white; color: black; }
+    .container { max-width: 100%; }
+    section { page-break-inside: avoid; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <!-- HEADER -->
+  <div class="eyebrow">Bitácora médica · Registro personal</div>
+  <h1 class="title">Explantación mamaria</h1>
+  <div class="meta-bar">
+    <span><strong>Paciente:</strong> Luisa</span>
+    <span><strong>Fecha:</strong> 22 mayo 2026</span>
+    <span><strong>Tipo:</strong> Cirugía electiva</span>
+    <span><strong>Estado:</strong> En curso</span>
+  </div>
+  <div class="orange-rule"></div>
+
+  <!-- CONTEXTO CLÍNICO -->
+  <section>
+    <h2>Contexto clínico</h2>
+    <div class="context-card">
+      <div class="context-row">
+        <div class="context-label">Procedimiento</div>
+        <div class="context-value">Explantación de implantes mamarios de silicona. Implantes en buen estado, sin patología asociada.</div>
+      </div>
+      <div class="context-row">
+        <div class="context-label">Antecedente relevante</div>
+        <div class="context-value">Síndrome vasovagal documentado. Equipo médico informado.</div>
+      </div>
+      <div class="context-row">
+        <div class="context-label">Estado pre-quirúrgico</div>
+        <div class="context-value">Sueño deficiente la noche previa. Recuperó algo de descanso en sala de espera antes del procedimiento.</div>
+      </div>
+      <div class="context-row">
+        <div class="context-label">Tipo de anestesia</div>
+        <div class="context-value">Por confirmar (anestesia general / sedación + local)</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CRONOLOGÍA -->
+  <section>
+    <h2>Cronología del día</h2>
+    <div class="timeline">
+
+      <div class="event done">
+        <div class="event-time">06:15</div>
+        <div class="event-title">Llegada a la clínica</div>
+        <div class="event-note">Recepción, documentación, espera inicial.</div>
+      </div>
+
+      <div class="event current">
+        <div class="event-time">06:45</div>
+        <div class="event-title">Valoración preanestésica</div>
+        <div class="event-note">Comunicación al anestesiólogo sobre síndrome vasovagal y sueño deficiente.</div>
+      </div>
+
+      <div class="event">
+        <div class="event-time">— : —</div>
+        <div class="event-title">Preparación preoperatoria</div>
+        <div class="event-note">Bata, canalización IV, signos vitales, espera previa a quirófano.</div>
+      </div>
+
+      <div class="event">
+        <div class="event-time">— : —</div>
+        <div class="event-title">Entrada a quirófano</div>
+        <div class="event-note">Inicio de inducción anestésica.</div>
+      </div>
+
+      <div class="event">
+        <div class="event-time">— : —</div>
+        <div class="event-title">Salida de quirófano</div>
+        <div class="event-note">Conversación inicial con cirujano. Reporte de cómo salió el procedimiento.</div>
+      </div>
+
+      <div class="event">
+        <div class="event-time">— : —</div>
+        <div class="event-title">Recuperación post-anestésica</div>
+        <div class="event-note">Paciente en sala de recuperación. Monitoreo de signos vitales.</div>
+      </div>
+
+      <div class="event">
+        <div class="event-time">— : —</div>
+        <div class="event-title">Primer contacto con paciente despierta</div>
+        <div class="event-note">Verificación de orientación, dolor, náusea.</div>
+      </div>
+
+      <div class="event">
+        <div class="event-time">— : —</div>
+        <div class="event-title">Salida / hospitalización</div>
+        <div class="event-note">Indicaciones de alta o paso a habitación.</div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- INFORMACIÓN DEL EQUIPO MÉDICO -->
+  <section>
+    <h2>Equipo médico</h2>
+    <div class="fill-grid">
+      <div class="fill-row">
+        <div class="fill-label">Cirujano plástico</div>
+        <div class="fill-blank" style="color: var(--ink); font-style: normal;">Dr. Adolfo Rosales Maldonado — Cirujano plástico certificado por la Sociedad Colombiana de Cirugía Plástica (SCCP). +23 años de experiencia, +5,000 cirugías. Miembro de SCCP, Sociedad Brasilera, Española, Federación Ibero-Latinoamericana e International Plastic & Reconstructive Surgery.</div>
+      </div>
+      <div class="fill-row">
+        <div class="fill-label">Anestesiólogo</div>
+        <div class="fill-blank" style="color: var(--ink); font-style: normal;">Dr. Octavio Carrascal — Jefe de Anestesiología de Clínica Dhara. Recomendación familiar directa. Informado de antecedente vasovagal y sueño deficiente.</div>
+      </div>
+      <div class="fill-row">
+        <div class="fill-label">Clínica / quirófano</div>
+        <div class="fill-blank" style="color: var(--ink); font-style: normal;">Clínica Dhara — Av. Cra. 15 # 83-33, Bogotá. Clínica especializada en cirugía plástica. Equipo médico miembro de la Sociedad Colombiana de Cirugía Plástica.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- REPORTE POST-QUIRÚRGICO -->
+  <section>
+    <h2>Reporte post-quirúrgico</h2>
+    <div class="fill-grid">
+      <div class="fill-row">
+        <div class="fill-label">Cómo salió la cirugía (palabras del cirujano)</div>
+        <div class="fill-blank">_____</div>
+      </div>
+      <div class="fill-row">
+        <div class="fill-label">Sangrado / complicaciones intraoperatorias</div>
+        <div class="fill-blank">_____</div>
+      </div>
+      <div class="fill-row">
+        <div class="fill-label">Episodios vasovagales durante el procedimiento</div>
+        <div class="fill-blank">Sí / No · Manejo aplicado</div>
+      </div>
+      <div class="fill-row">
+        <div class="fill-label">Estado de los implantes extraídos</div>
+        <div class="fill-blank">Integridad, cápsula, hallazgos</div>
+      </div>
+      <div class="fill-row">
+        <div class="fill-label">Drenajes colocados</div>
+        <div class="fill-blank">Sí / No · Cuántos · Cuándo se retiran</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- INDICACIONES POST-OPERATORIAS -->
+  <section>
+    <h2>Indicaciones post-operatorias</h2>
+    <div class="fill-grid">
+      <div class="fill-row">
+        <div class="fill-label">Medicamentos prescritos</div>
+        <div class="fill-blank">Analgésicos · antibióticos · antiinflamatorios · dosis y horarios</div>
+      </div>
+      <div class="fill-row">
+        <div class="fill-label">Cuidados de heridas</div>
+        <div class="fill-blank">Curaciones, frecuencia, signos de alarma</div>
+      </div>
+      <div class="fill-row">
+        <div class="fill-label">Restricciones físicas</div>
+        <div class="fill-blank">Reposo, levantar peso, brazos, ducha</div>
+      </div>
+      <div class="fill-row">
+        <div class="fill-label">Prenda de compresión</div>
+        <div class="fill-blank">Tipo, tiempo de uso</div>
+      </div>
+      <div class="fill-row">
+        <div class="fill-label">Próximo control</div>
+        <div class="fill-blank">Fecha, hora, qué evaluar</div>
+      </div>
+      <div class="fill-row">
+        <div class="fill-label">Señales de alarma (cuándo llamar al cirujano)</div>
+        <div class="fill-blank">Fiebre, sangrado, dolor desproporcionado, etc.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- NOTAS PERSONALES -->
+  <section>
+    <h2>Notas personales</h2>
+    <div class="notes-panel">
+      <p>Espacio para observaciones del día. Cómo se sintió ella, cómo se sintió usted, conversaciones relevantes con el equipo médico, cualquier dato que mañana querrá recordar y hoy parece obvio.</p>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <span>Bitácora · 22.05.2026</span>
+    <span>Documento de uso personal</span>
+  </footer>
+
+</div>
+</body>
+</html>
