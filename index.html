@@ -1,0 +1,800 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tres regímenes monetarios bajo el escrutinio rothbardiano</title>
+<style>
+  :root {
+    --bg: #fafaf7;
+    --surface: #ffffff;
+    --text: #1a1a1a;
+    --text-muted: #5f5e5a;
+    --border: rgba(0,0,0,0.12);
+    --border-strong: rgba(0,0,0,0.22);
+    --accent: #2c2c2a;
+    --serif: 'Iowan Old Style', 'Palatino Linotype', Palatino, 'Book Antiqua', Georgia, serif;
+    --sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+
+    --green-50: #EAF3DE;
+    --green-900: #173404;
+    --green-700: #3B6D11;
+    --amber-100: #FAC775;
+    --amber-900: #412402;
+    --amber-700: #BA7517;
+    --coral-200: #F0997B;
+    --coral-900: #4A1B0C;
+    --red-100: #F7C1C1;
+    --red-900: #501313;
+    --red-400: #E24B4A;
+    --red-50: #FBEAF0;
+    --red-700: #A32D2D;
+  }
+
+  * { box-sizing: border-box; }
+
+  html, body {
+    margin: 0;
+    padding: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--serif);
+    font-size: 18px;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  .container {
+    max-width: 820px;
+    margin: 0 auto;
+    padding: 4rem 1.5rem 5rem;
+  }
+
+  header.masthead {
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 1.5rem;
+    margin-bottom: 2.5rem;
+  }
+
+  .kicker {
+    font-family: var(--sans);
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--text-muted);
+    font-weight: 500;
+    margin-bottom: 0.75rem;
+  }
+
+  h1 {
+    font-family: var(--serif);
+    font-size: 2.4rem;
+    line-height: 1.15;
+    font-weight: 500;
+    margin: 0 0 0.8rem;
+    letter-spacing: -0.01em;
+  }
+
+  .deck {
+    font-family: var(--serif);
+    font-size: 1.15rem;
+    line-height: 1.5;
+    color: var(--text-muted);
+    font-style: italic;
+    margin: 0 0 1.2rem;
+  }
+
+  .byline {
+    font-family: var(--sans);
+    font-size: 13px;
+    color: var(--text-muted);
+  }
+
+  .byline span + span::before {
+    content: " · ";
+    margin: 0 0.3rem;
+  }
+
+  .lede {
+    font-size: 1.15rem;
+    line-height: 1.6;
+  }
+
+  .lede::first-letter {
+    font-size: 3.6rem;
+    float: left;
+    line-height: 0.9;
+    padding: 0.3rem 0.6rem 0 0;
+    font-weight: 500;
+  }
+
+  p {
+    margin: 0 0 1.2rem;
+  }
+
+  h2.section {
+    font-family: var(--serif);
+    font-size: 1.5rem;
+    font-weight: 500;
+    margin: 2.5rem 0 1rem;
+    line-height: 1.25;
+  }
+
+  blockquote {
+    margin: 1.8rem 0;
+    padding: 0.3rem 0 0.3rem 1.5rem;
+    border-left: 3px solid var(--accent);
+    font-style: italic;
+    color: var(--text-muted);
+    font-size: 1.05rem;
+    line-height: 1.55;
+  }
+
+  blockquote cite {
+    display: block;
+    margin-top: 0.6rem;
+    font-style: normal;
+    font-family: var(--sans);
+    font-size: 12px;
+    color: var(--text-muted);
+    letter-spacing: 0.02em;
+  }
+
+  blockquote cite::before {
+    content: "— ";
+  }
+
+  .table-wrapper {
+    margin: 2.5rem 0;
+  }
+
+  .table-header {
+    margin-bottom: 1rem;
+  }
+
+  .table-title {
+    font-family: var(--serif);
+    font-size: 1.3rem;
+    font-weight: 500;
+    margin: 0 0 0.3rem;
+  }
+
+  .table-subtitle {
+    font-family: var(--sans);
+    font-size: 13px;
+    color: var(--text-muted);
+  }
+
+  .legend {
+    display: flex;
+    gap: 16px;
+    margin: 1rem 0 0.8rem;
+    font-family: var(--sans);
+    font-size: 12px;
+    color: var(--text-muted);
+    flex-wrap: wrap;
+  }
+
+  .legend-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .legend-swatch {
+    width: 12px;
+    height: 12px;
+    border-radius: 2px;
+  }
+
+  .table-scroll {
+    overflow-x: auto;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    background: var(--surface);
+  }
+
+  table.regimens {
+    width: 100%;
+    min-width: 720px;
+    border-collapse: collapse;
+    font-family: var(--sans);
+    font-size: 13px;
+  }
+
+  table.regimens thead th {
+    text-align: left;
+    padding: 14px 12px;
+    border-bottom: 1px solid var(--border-strong);
+    vertical-align: bottom;
+    font-weight: 500;
+    background: var(--surface);
+  }
+
+  table.regimens thead th.dim {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--text-muted);
+    width: 18%;
+  }
+
+  table.regimens thead th.col {
+    font-size: 14px;
+    width: 27.3%;
+  }
+
+  table.regimens thead th.col .sub {
+    display: block;
+    font-size: 11px;
+    color: var(--text-muted);
+    font-weight: 400;
+    margin-top: 2px;
+  }
+
+  table.regimens tbody td {
+    padding: 12px;
+    vertical-align: top;
+    border-bottom: 1px solid var(--border);
+  }
+
+  table.regimens tbody tr:last-child td {
+    border-bottom: none;
+  }
+
+  td.dimension {
+    font-weight: 500;
+    font-size: 13px;
+    background: var(--surface);
+  }
+
+  .cell-label {
+    font-weight: 500;
+    margin-bottom: 4px;
+    font-size: 13px;
+  }
+
+  .cell-note {
+    font-size: 11.5px;
+    line-height: 1.5;
+  }
+
+  .q-alta { background: var(--green-50); color: var(--green-900); }
+  .q-media { background: var(--amber-100); color: var(--amber-900); }
+  .q-baja { background: var(--coral-200); color: var(--coral-900); }
+  .q-deg-suave { background: var(--red-100); color: var(--red-900); }
+  .q-deg { background: var(--red-400); color: var(--red-50); }
+
+  td.has-tooltip {
+    position: relative;
+    cursor: help;
+  }
+
+  td.has-tooltip::after {
+    content: "+";
+    position: absolute;
+    top: 6px;
+    right: 8px;
+    font-family: var(--sans);
+    font-size: 11px;
+    font-weight: 500;
+    opacity: 0.55;
+    line-height: 1;
+  }
+
+  .tooltip {
+    visibility: hidden;
+    opacity: 0;
+    position: absolute;
+    z-index: 100;
+    bottom: calc(100% + 8px);
+    left: 50%;
+    transform: translateX(-50%);
+    width: 320px;
+    max-width: 90vw;
+    background: #1a1a1a;
+    color: #ececec;
+    padding: 12px 14px;
+    border-radius: 6px;
+    font-family: var(--sans);
+    font-size: 12px;
+    line-height: 1.55;
+    font-weight: 400;
+    text-align: left;
+    transition: opacity 0.18s ease, visibility 0.18s ease;
+    pointer-events: none;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.18);
+  }
+
+  .tooltip::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    border: 6px solid transparent;
+    border-top-color: #1a1a1a;
+  }
+
+  .tooltip strong {
+    display: block;
+    color: #fafaf7;
+    font-weight: 500;
+    margin-bottom: 6px;
+    font-size: 12px;
+    letter-spacing: 0.02em;
+  }
+
+  td.has-tooltip:hover .tooltip,
+  td.has-tooltip:focus-within .tooltip {
+    visibility: visible;
+    opacity: 1;
+  }
+
+  @media (max-width: 720px) {
+    .tooltip {
+      width: 260px;
+    }
+  }
+
+  .verdict {
+    margin-top: 2rem;
+    padding: 1.5rem;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+  }
+
+  .verdict-title {
+    font-family: var(--sans);
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--text-muted);
+    font-weight: 500;
+    margin-bottom: 1rem;
+  }
+
+  .verdict-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+  }
+
+  .verdict-card {
+    padding: 1rem;
+    border-left: 3px solid;
+    background: var(--bg);
+    border-radius: 0 4px 4px 0;
+  }
+
+  .verdict-card.first { border-color: var(--green-700); }
+  .verdict-card.second { border-color: var(--amber-700); }
+  .verdict-card.third { border-color: var(--red-700); }
+
+  .verdict-rank {
+    font-family: var(--sans);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--text-muted);
+    margin-bottom: 4px;
+  }
+
+  .verdict-name {
+    font-family: var(--serif);
+    font-weight: 500;
+    font-size: 16px;
+    margin-bottom: 6px;
+  }
+
+  .verdict-desc {
+    font-family: var(--sans);
+    font-size: 12px;
+    line-height: 1.5;
+    color: var(--text-muted);
+  }
+
+  hr.divider {
+    border: none;
+    height: 1px;
+    background: var(--border);
+    margin: 3rem 0;
+  }
+
+  footer.colophon {
+    margin-top: 3rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--border);
+    font-family: var(--sans);
+    font-size: 12px;
+    color: var(--text-muted);
+    line-height: 1.6;
+  }
+
+  footer.colophon p {
+    margin: 0 0 0.6rem;
+  }
+
+  @media (max-width: 640px) {
+    .container { padding: 2.5rem 1.2rem 4rem; }
+    h1 { font-size: 1.9rem; }
+    .deck { font-size: 1.05rem; }
+    body { font-size: 17px; }
+    .verdict-grid { grid-template-columns: 1fr; }
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #16161a;
+      --surface: #1f1f24;
+      --text: #ececec;
+      --text-muted: #9a9a95;
+      --border: rgba(255,255,255,0.10);
+      --border-strong: rgba(255,255,255,0.20);
+      --accent: #ececec;
+    }
+    .q-alta { background: #1d3a0f; color: #C0DD97; }
+    .q-media { background: #4a3608; color: #FAC775; }
+    .q-baja { background: #4a2418; color: #F0997B; }
+    .q-deg-suave { background: #4a1a1a; color: #F7C1C1; }
+    .q-deg { background: #7a1f1f; color: #F7C1C1; }
+  }
+</style>
+</head>
+<body>
+
+<article class="container">
+
+  <header class="masthead">
+    <div class="kicker">Panel Austriaco · Aplicación rothbardiana</div>
+    <h1>Tres regímenes monetarios bajo el escrutinio rothbardiano</h1>
+    <p class="deck">Sobre la calidad informativa del sistema de precios y de la estructura intertemporal cuando el dinero es sano, cuando se permite el fraude descentralizado, y cuando el fraude se institucionaliza como cártel coercitivo.</p>
+    <div class="byline">
+      <span>Marco: Rothbard</span>
+      <span>Corpus: <em>El hombre, la economía y el Estado</em> · <em>Qué ha hecho el gobierno de nuestro dinero</em></span>
+    </div>
+  </header>
+
+  <p class="lede">Hay tres maneras de organizar el dinero. Solo una respeta el contrato: el dinero duro sin reserva fraccionaria. Las otras dos —la banca libre con reserva fraccionaria y la banca central actual— son variantes del mismo fraude, distinguidas únicamente por su escala: el fraude tolerado del banquero individual y el fraude institucionalizado del cártel coercitivo. Entre estas dos, la diferencia operativa es enorme; la diferencia ética es nula.</p>
+
+  <p>El criterio para evaluarlas no es el crecimiento agregado ni la "estabilidad" macroeconómica —ambas metáforas tramposas que dan por sentado lo que habría que probar—. El criterio es más fino y más exigente: la <em>calidad informativa</em> del sistema. ¿Refleja la tasa de interés la preferencia temporal real de los actores económicos, o es un precio falsificado? ¿Conserva el dinero su poder adquisitivo gracias a la oferta y la demanda monetarias reales, o se erosiona por una emisión que no representa ninguna mercancía depositada? ¿Permite el régimen detectar la mala inversión cuando ocurre, o la oculta hasta el colapso?</p>
+
+  <p>Bajo este criterio, los tres regímenes ordenan de manera inequívoca. El cuadro que sigue evalúa ocho dimensiones. La etiqueta de cada celda no es un juicio impresionista: corresponde al diagnóstico explícito del corpus rothbardiano sobre lo que cada régimen le hace al sistema de precios.</p>
+
+  <div class="table-wrapper">
+    <div class="table-header">
+      <div class="table-title">Calidad informativa por dimensión</div>
+      <div class="table-subtitle">Ocho ejes evaluados, tres regímenes contrastados</div>
+    </div>
+
+    <div class="legend">
+      <span class="legend-item"><span class="legend-swatch" style="background: var(--green-50);"></span>Alta</span>
+      <span class="legend-item"><span class="legend-swatch" style="background: var(--amber-100);"></span>Media</span>
+      <span class="legend-item"><span class="legend-swatch" style="background: var(--coral-200);"></span>Baja</span>
+      <span class="legend-item"><span class="legend-swatch" style="background: var(--red-400);"></span>Degradada</span>
+      <span class="legend-item" style="margin-left: auto; font-style: italic; opacity: 0.75;">Pase el cursor sobre cada celda para ver el análisis ampliado</span>
+    </div>
+
+    <div class="table-scroll">
+      <table class="regimens">
+        <thead>
+          <tr>
+            <th class="dim">Dimensión</th>
+            <th class="col">Dinero duro<span class="sub">sin reserva fraccionaria</span></th>
+            <th class="col">Banca libre con RF<span class="sub">tradición Selgin-White</span></th>
+            <th class="col">Banca central actual<span class="sub">cártel fiat</span></th>
+          </tr>
+        </thead>
+        <tbody>
+
+          <tr>
+            <td class="dimension">Tasa de interés</td>
+            <td class="q-alta has-tooltip" tabindex="0">
+              <div class="cell-label">Alta</div>
+              <div class="cell-note">La tasa <em>es</em> la preferencia temporal social, no su consecuencia derivada. No hay falsificación bancaria que la separe de su fuente.</div>
+              <div class="tooltip">
+                <strong>Identidad praxeológica</strong>
+                En el aparato austriaco no hay dos cosas —preferencia temporal por un lado, tasa de interés por otro— vinculadas causalmente. Son la misma realidad expresada en dos planos. La preferencia temporal es el descuento subjetivo que cada actor aplica al futuro; la tasa de interés es ese mismo descuento manifestado en los precios del mercado. Los ahorros no son la causa de la tasa, son el efecto conjunto de la preferencia temporal sobre el comportamiento.
+              </div>
+            </td>
+            <td class="q-media has-tooltip" tabindex="0">
+              <div class="cell-label">Media</div>
+              <div class="cell-note">Distorsionada incluso sin cártel: cada expansión local rebaja la tasa bajo la natural.</div>
+              <div class="tooltip">
+                <strong>Falsificación contenida</strong>
+                Cuando el Banco A emite pseudo-recibos, vuelca al mercado crediticio fondos que no provienen de ahorro real. La tasa de préstamo cae por debajo de la natural —que sigue reflejando la preferencia temporal verdadera—. El daño existe, pero el canje interbancario lo limita: el Banco B exige el oro, el Banco A se contrae, y el desequilibrio se corrige antes de propagarse.
+              </div>
+            </td>
+            <td class="q-deg-suave has-tooltip" tabindex="0">
+              <div class="cell-label">Degradada</div>
+              <div class="cell-note">Fijada políticamente por el cártel. Señal capturada por el Estado.</div>
+              <div class="tooltip">
+                <strong>Precio administrado</strong>
+                La tasa fed funds no informa al empresario sobre cuánto ahorro real existe en la sociedad. Informa sobre cuánto el comité monetario decidió esa mañana. La tasa deja de ser señal y se convierte en herramienta política. El cálculo económico intertemporal opera entonces sobre información sistemáticamente mentirosa.
+              </div>
+            </td>
+          </tr>
+
+          <tr>
+            <td class="dimension">Poder adquisitivo (PPM)</td>
+            <td class="q-alta has-tooltip" tabindex="0">
+              <div class="cell-label">Alta</div>
+              <div class="cell-note">PPM determinado por oferta y demanda monetaria reales. Sin emisión fraudulenta.</div>
+              <div class="tooltip">
+                <strong>Poder adquisitivo del dinero</strong>
+                No es un escalar promediable —no existe un "nivel de precios"—; es el conjunto de relaciones marginales de intercambio entre una unidad de dinero y todos los demás bienes. Bajo dinero duro, esas relaciones se determinan por la oferta de la mercancía-dinero y la demanda real de saldos en efectivo. Ningún actor puede inflar artificialmente la oferta sin minar la materia prima.
+              </div>
+            </td>
+            <td class="q-baja has-tooltip" tabindex="0">
+              <div class="cell-label">Baja</div>
+              <div class="cell-note">Cada pseudo-recibo emitido erosiona el PPM. Inflación inherente al sistema.</div>
+              <div class="tooltip">
+                <strong>Inflación contractualmente fraudulenta</strong>
+                Cada billete emitido sin respaldo es una unidad monetaria adicional que compite por los mismos bienes existentes. El PPM cae proporcionalmente. La erosión es estructural, no accidental: el modelo de negocio depende de ella.
+              </div>
+            </td>
+            <td class="q-deg has-tooltip" tabindex="0">
+              <div class="cell-label">Degradada</div>
+              <div class="cell-note">Erosión continua y deliberada. PPM como variable de gestión política.</div>
+              <div class="tooltip">
+                <strong>Inflación como política de Estado</strong>
+                El cártel no tiene techo metálico ni canje interbancario que lo discipline. La oferta monetaria es discrecional, y la meta de inflación —típicamente 2% anual— es la admisión explícita de que el régimen está diseñado para destruir poder adquisitivo a una velocidad políticamente sostenible.
+              </div>
+            </td>
+          </tr>
+
+          <tr>
+            <td class="dimension">Precios relativos</td>
+            <td class="q-alta has-tooltip" tabindex="0">
+              <div class="cell-label">Alta</div>
+              <div class="cell-note">Estructura de precios fiel a las valoraciones marginales de los consumidores.</div>
+              <div class="tooltip">
+                <strong>Precios como información veraz</strong>
+                Cada precio relativo concreto refleja la intersección entre lo que los consumidores valoran y lo que los productores pueden ofrecer al margen. Bajo dinero duro, esa señal llega sin filtros: el empresario que ve un precio alto sabe que hay demanda real y que el recurso es genuinamente escaso.
+              </div>
+            </td>
+            <td class="q-media has-tooltip" tabindex="0">
+              <div class="cell-label">Media</div>
+              <div class="cell-note">Efecto Cantillon localizado: distorsiones acotadas pero recurrentes.</div>
+              <div class="tooltip">
+                <strong>Efecto Cantillon contenido</strong>
+                Quien recibe primero el dinero recién emitido compra a precios antiguos; quien lo recibe último compra a precios ya inflados. Hay una redistribución silenciosa hacia los primeros receptores. Bajo banca libre, el efecto se limita a la clientela del banco emisor; bajo cártel, se sistematiza.
+              </div>
+            </td>
+            <td class="q-deg-suave has-tooltip" tabindex="0">
+              <div class="cell-label">Degradada</div>
+              <div class="cell-note">Efecto Cantillon sistémico. Precios relativos contaminados permanentemente.</div>
+              <div class="tooltip">
+                <strong>Cantillon institucionalizado</strong>
+                El dinero nuevo entra al sistema vía el mercado de bonos del Estado y la banca primaria. Quienes están cerca de esa fuente —gobierno, grandes bancos, sectores que prestan al Estado, activos financieros— reciben el dinero antes de que los precios se ajusten. La redistribución no es accidental sino estructural.
+              </div>
+            </td>
+          </tr>
+
+          <tr>
+            <td class="dimension">Asignación intertemporal</td>
+            <td class="q-alta has-tooltip" tabindex="0">
+              <div class="cell-label">Alta</div>
+              <div class="cell-note">Inversión calzada con ahorro real. Estructura productiva sostenible.</div>
+              <div class="tooltip">
+                <strong>Ahorro real, inversión sostenible</strong>
+                Cada peso invertido proviene de alguien que renunció a consumir en el presente. Esa renuncia genuina libera recursos reales para la inversión. La estructura productiva extendida que se construye sobre esa base se completa porque los recursos para completarla efectivamente existen.
+              </div>
+            </td>
+            <td class="q-baja has-tooltip" tabindex="0">
+              <div class="cell-label">Baja</div>
+              <div class="cell-note">Mini-ciclos locales: cada banco que expande genera mala inversión en su clientela.</div>
+              <div class="tooltip">
+                <strong>Mala inversión local</strong>
+                El banco que emite pseudo-recibos engaña a los empresarios de su clientela: ven crédito barato y emprenden proyectos extendidos que no corresponden a ahorro real. Cuando el canje interbancario obliga al banco a contraerse, los proyectos se revelan ruinosos. Hay ciclo, pero está confinado a la órbita del banco imprudente.
+              </div>
+            </td>
+            <td class="q-deg has-tooltip" tabindex="0">
+              <div class="cell-label">Degradada</div>
+              <div class="cell-note">Ciclo auge-depresión sistémico, sincronizado y prolongado por reinyecciones.</div>
+              <div class="tooltip">
+                <strong>Ciclo económico institucionalizado</strong>
+                El cártel sincroniza la expansión de todos los bancos. La mala inversión se vuelve nacional, no local. Y cuando el ajuste amenaza con manifestarse, una nueva inyección de crédito posterga la corrección. El auge se sostiene artificialmente hasta que el reajuste, cuando finalmente llega, llega como catástrofe agregada.
+              </div>
+            </td>
+          </tr>
+
+          <tr>
+            <td class="dimension">Discriminación bancaria</td>
+            <td class="q-alta has-tooltip" tabindex="0">
+              <div class="cell-label">Alta</div>
+              <div class="cell-note">No aplica: depósito y préstamo son contratos distintos. No hay banco que falsificar.</div>
+              <div class="tooltip">
+                <strong>Dos contratos distintos</strong>
+                Bajo dinero duro con reserva 100%, el banco que custodia depósitos cobra por el servicio de almacenaje, no presta lo depositado. Quien quiere prestar firma un contrato distinto, a plazo, sabiendo que renuncia temporalmente a su disponibilidad. No hay fraude posible porque no hay confusión contractual entre custodia y crédito.
+              </div>
+            </td>
+            <td class="q-media has-tooltip" tabindex="0">
+              <div class="cell-label">Media</div>
+              <div class="cell-note">Existe: corridas y canjes interbancarios penalizan al imprudente. Tardía pero real.</div>
+              <div class="tooltip">
+                <strong>Disciplina por la corrida</strong>
+                El mercado distingue, eventualmente, entre bancos prudentes y bancos imprudentes. Las corridas castigan a los segundos; el canje interbancario los obliga a contraerse. La disciplina llega tarde —después de haber generado mala inversión— pero llega.
+              </div>
+            </td>
+            <td class="q-deg has-tooltip" tabindex="0">
+              <div class="cell-label">Degradada</div>
+              <div class="cell-note">Anulada por FDIC, prestamista de última instancia y rescates. Riesgo socializado.</div>
+              <div class="tooltip">
+                <strong>Riesgo moral institucionalizado</strong>
+                El seguro de depósitos garantiza que el cliente del banco imprudente no pierda; el prestamista de última instancia garantiza que el banco imprudente no quiebre. La disciplina del mercado bancario está deliberadamente desactivada. El costo de la imprudencia se traslada al contribuyente y al tenedor de la moneda vía inflación.
+              </div>
+            </td>
+          </tr>
+
+          <tr>
+            <td class="dimension">Predictibilidad estructural</td>
+            <td class="q-alta has-tooltip" tabindex="0">
+              <div class="cell-label">Alta</div>
+              <div class="cell-note">Oferta monetaria conocida y previsible. Horizonte de cálculo económico estable.</div>
+              <div class="tooltip">
+                <strong>Horizonte calculable</strong>
+                Quien firma un contrato a veinte años bajo dinero duro sabe que la unidad monetaria mantendrá su estructura. La oferta de oro crece lentamente, predeciblemente; la de Bitcoin sigue un cronograma fijo conocido. Esa predictibilidad permite cálculo económico a largo plazo, contratos de plazo extenso, pensiones, inversiones de capital fijo.
+              </div>
+            </td>
+            <td class="q-media has-tooltip" tabindex="0">
+              <div class="cell-label">Media</div>
+              <div class="cell-note">Base metálica fija el techo, pero el coeficiente fluctúa con la confianza.</div>
+              <div class="tooltip">
+                <strong>Techo metálico, suelo fluctuante</strong>
+                La base de oro impone un límite superior conocido. Pero el coeficiente de reserva fraccionaria que cada banco mantiene varía con la confianza pública, el momento del ciclo, las expectativas. La oferta monetaria efectiva pulsa entre límites identificables pero no es estable.
+              </div>
+            </td>
+            <td class="q-deg-suave has-tooltip" tabindex="0">
+              <div class="cell-label">Degradada</div>
+              <div class="cell-note">Oferta discrecional sin techo. El régimen mismo es la variable política.</div>
+              <div class="tooltip">
+                <strong>Régimen como variable</strong>
+                No solo varía la oferta monetaria; varía el régimen mismo. Pueden cambiar las metas de inflación, los instrumentos, las facilidades de crédito de emergencia, las reglas contables aplicadas a los bancos. El contrato a veinte años opera sobre incertidumbre estructural irreductible.
+              </div>
+            </td>
+          </tr>
+
+          <tr>
+            <td class="dimension">Detección de mala inversión</td>
+            <td class="q-alta has-tooltip" tabindex="0">
+              <div class="cell-label">Alta</div>
+              <div class="cell-note">Pérdidas y quiebras inmediatas señalan el error. No hay anestesia crediticia.</div>
+              <div class="tooltip">
+                <strong>Pérdida como señal</strong>
+                Bajo dinero duro, el empresario que invierte mal pierde su capital propio o el de quienes voluntariamente lo respaldaron. La pérdida llega rápido, está focalizada, libera los recursos malasignados para usos productivos. El sistema aprende y reasigna.
+              </div>
+            </td>
+            <td class="q-media has-tooltip" tabindex="0">
+              <div class="cell-label">Media</div>
+              <div class="cell-note">El canje interbancario fuerza la liquidación, pero solo tras el daño hecho.</div>
+              <div class="tooltip">
+                <strong>Corrección demorada</strong>
+                El canje interbancario funciona, pero opera con retardo. La mala inversión se materializa, los recursos se asignan a proyectos extendidos insostenibles, y solo después el ajuste obliga a la liquidación. Hay capital destruido en el intermedio, pero el sistema corrige.
+              </div>
+            </td>
+            <td class="q-deg has-tooltip" tabindex="0">
+              <div class="cell-label">Degradada</div>
+              <div class="cell-note">Reinyecciones de crédito ocultan el error y prolongan el auge hasta el colapso.</div>
+              <div class="tooltip">
+                <strong>Anestesia sistemática</strong>
+                Cuando los proyectos comienzan a revelar su insostenibilidad, una nueva inyección de crédito los mantiene a flote. El error no se corrige, se acumula. La economía construye sobre la mala inversión anterior nueva mala inversión. El reajuste, cuando llega, no es corrección sino catástrofe.
+              </div>
+            </td>
+          </tr>
+
+          <tr>
+            <td class="dimension">Auditabilidad</td>
+            <td class="q-alta has-tooltip" tabindex="0">
+              <div class="cell-label">Alta</div>
+              <div class="cell-note">Bitcoin: verificación criptográfica. Oro: peso y ley verificables físicamente.</div>
+              <div class="tooltip">
+                <strong>Verificación nativa</strong>
+                Bitcoin elimina la necesidad de confiar en un almacenista: cualquiera puede verificar criptográficamente la oferta total y la propiedad de cada unidad. El oro requería confiar en que el banco tuviera lo que decía tener; Bitcoin no requiere esa confianza. Es el primer dinero estructuralmente inmune al fraude bancario clásico.
+              </div>
+            </td>
+            <td class="q-baja has-tooltip" tabindex="0">
+              <div class="cell-label">Baja</div>
+              <div class="cell-note">Auditoría posible, pero el pseudo-recibo es indistinguible del genuino hasta la corrida.</div>
+              <div class="tooltip">
+                <strong>Asimetría informativa</strong>
+                Auditar un banco con reserva fraccionaria es posible en principio, pero los pseudo-recibos circulan indistinguibles de los genuinos. La realidad solo se impone cuando llega la corrida y los últimos reclamantes descubren que no hay oro para ellos. La falsificación se detecta tarde, retroactivamente.
+              </div>
+            </td>
+            <td class="q-deg has-tooltip" tabindex="0">
+              <div class="cell-label">Degradada</div>
+              <div class="cell-note">Opacidad institucionalizada. Auditoría obstruida por diseño del cártel.</div>
+              <div class="tooltip">
+                <strong>Opacidad por diseño</strong>
+                La auditoría completa de la banca central es resistida sistemáticamente. Las operaciones de mercado abierto, los swaps de liquidez con bancos centrales extranjeros, las facilidades de emergencia, son zonas deliberadamente opacas. El régimen depende de que el ciudadano no entienda exactamente qué está pasando con su moneda.
+              </div>
+            </td>
+          </tr>
+
+        </tbody>
+      </table>
+    </div>
+
+    <div class="verdict">
+      <div class="verdict-title">Veredicto rothbardiano · ranking</div>
+      <div class="verdict-grid">
+        <div class="verdict-card first">
+          <div class="verdict-rank">1.º — dinero sano íntegro</div>
+          <div class="verdict-name">Dinero duro sin RF</div>
+          <div class="verdict-desc">Único régimen donde el sistema de precios opera sin falsificación. Único compatible con la ética del contrato.</div>
+        </div>
+        <div class="verdict-card second">
+          <div class="verdict-rank">2.º — mal menor inestable</div>
+          <div class="verdict-name">Banca libre con RF</div>
+          <div class="verdict-desc">Económicamente superior al cártel, pero éticamente fraude. Mises lo tolera, Rothbard lo proscribe.</div>
+        </div>
+        <div class="verdict-card third">
+          <div class="verdict-rank">3.º — patología institucional</div>
+          <div class="verdict-name">Banca central fiat</div>
+          <div class="verdict-desc">Fraude amplificado por el monopolio coercitivo. Régimen de máxima destrucción informativa.</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <h2 class="section">Lo que el cuadro está diciendo</h2>
+
+  <p>Conviene leer la tabla en diagonal, no columna por columna. Lo que importa es el patrón: el régimen de dinero duro sin reserva fraccionaria obtiene "Alta" en las ocho dimensiones porque preserva la integridad de un único hecho fundamental —que un recibo de depósito representa un depósito real—. Cuando se viola ese hecho, todo lo demás se degrada en cascada. Las tasas mienten. Los precios mienten. La estructura productiva se construye sobre ahorro inexistente. Y el régimen, lejos de poder corregirse, depende de seguir mintiendo para que el ajuste no llegue.</p>
+
+  <p>La columna del medio es la concesión que el corpus rothbardiano hace y que conviene no aplanar. Económicamente, el sistema de banca libre con reserva fraccionaria es superior al cártel central. Rothbard lo reconoce, citando a Mises: <em>«desde el punto de vista de los que son adversos a la inflación y a la expansión crediticia, el sistema de banca libre es superior al sistema de bancos centrales»</em> (Rothbard, <em>El hombre, la economía y el Estado</em>, cap. 12). La razón es operativa: la limitación de clientela funciona como freno real. Cuando el Banco A emite pseudo-recibos, sus clientes los gastan, los recibos llegan al Banco B, el Banco B exige canje al Banco A, y el Banco A es disciplinado por la realidad antes de que el daño se propague.</p>
+
+  <p>Pero esa superioridad es estrictamente económica. Éticamente, la concesión termina ahí. La emisión de recibos sin respaldo es fraude desde el momento de la emisión, no desde el momento del colapso:</p>
+
+  <blockquote>
+    «Es fraude en la medida que quienes los tienen en su poder reclaman una propiedad que no existe.»
+    <cite>Rothbard, <em>Qué ha hecho el gobierno de nuestro dinero</em>, cap. 4</cite>
+  </blockquote>
+
+  <p>Aquí Rothbard se separa explícitamente de Mises. Mises trata la reserva fraccionaria como práctica bancaria económicamente problemática pero contractualmente admisible si las partes consienten. Rothbard responde que el consentimiento es imposible: el cliente que acepta el recibo cree que tiene un recibo de depósito, no un préstamo a la vista al banco. Si lo supiera, el sistema colapsaría inmediatamente, porque nadie aceptaría billetes sabiendo que cubren una fracción de lo prometido. El régimen entero depende de que el cliente <em>no entienda</em> qué clase de instrumento tiene en las manos. Eso no es un contrato, es un fraude diseñado.</p>
+
+  <h2 class="section">La banca central como amplificador del fraude</h2>
+
+  <p>La tercera columna no es una desviación del régimen anterior. Es su perfeccionamiento. Si la banca libre con reserva fraccionaria es fraude limitado por el canje interbancario, la banca central es fraude liberado de ese límite. El mecanismo está perfectamente documentado en el corpus:</p>
+
+  <blockquote>
+    «Si todos los bancos se expanden, entonces no hay problema de canje de un banco respecto de otro, y cada banco se encuentra con que su clientela es realmente todo el país.»
+    <cite>Rothbard, <em>Qué ha hecho el gobierno de nuestro dinero</em>, cap. 4</cite>
+  </blockquote>
+
+  <p>Llamen a esto por su nombre: cartelización coercitiva. El banco central no es un árbitro neutral del sistema monetario; es la institución que elimina la única disciplina genuina que la reserva fraccionaria todavía toleraba. Y al hacerlo, transforma la mala inversión <em>local</em> y <em>autocorregible</em> en mala inversión <em>sistémica</em> y <em>prolongable indefinidamente</em>, hasta que el reajuste, cuando finalmente llega, llega como catástrofe.</p>
+
+  <p>Esto explica la última fila del cuadro y el punto donde Rothbard alcanza su diagnóstico más cortante. La banca central no es ciega a la mala inversión: está diseñada para ocultarla. El auge dura porque el cártel reinyecta crédito cada vez que el ajuste amenaza con manifestarse:</p>
+
+  <blockquote>
+    «La única manera de evitar el proceso de depresión y ajuste es la continua inflación monetaria y crediticia.»
+    <cite>Rothbard, <em>El hombre, la economía y el Estado</em>, cap. 12</cite>
+  </blockquote>
+
+  <p>La pregunta no es si el cártel terminará en colapso. La pregunta es cuánto capital habrá destruido antes de que el colapso se permita.</p>
+
+  <h2 class="section">La fila que Rothbard no podía haber escrito</h2>
+
+  <p>La última dimensión del cuadro —auditabilidad— merece comentario aparte porque es donde la extrapolación rothbardiana toca el presente con fuerza inesperada. Rothbard murió antes de Bitcoin. Pero el principio que vuelve a Bitcoin estructuralmente superior incluso al oro está en su análisis del fraude bancario: el pseudo-recibo es indistinguible del recibo genuino hasta que llega la corrida, momento en que la realidad se impone sobre los últimos reclamantes.</p>
+
+  <p>Bitcoin elimina esa asimetría informativa por diseño. No hay un almacenista en quien confiar; hay una cadena criptográfica verificable por cualquiera. El oro requería confiar en que el banco tuviera lo que decía tener. Bitcoin no requiere esa confianza. Es —y aquí la formulación es deliberada— el primer dinero estructuralmente inmune al fraude bancario clásico que Rothbard pasó la vida denunciando. No porque los humanos detrás de Bitcoin sean más honestos, sino porque el sistema no les permite ser deshonestos sin que la deshonestidad sea visible inmediatamente.</p>
+
+  <h2 class="section">El ranking que no admite empate técnico</h2>
+
+  <p>El veredicto del cuadro no es una preferencia estética entre tres opciones más o menos aceptables. Es una ordenación moral antes que económica. Hay un régimen que respeta el contrato y dos que lo violan; entre los dos que lo violan, hay uno que tolera límites externos a su fraude y otro que los elimina por diseño. El orden no es debatible salvo que se rechace el principio inicial: que un recibo de depósito debe representar un depósito real.</p>
+
+  <p>Quien acepte esa premisa mínima —y es difícil ver desde qué tradición moral se la podría rechazar— acepta el ranking. Quien no la acepte está defendiendo, sépalo o no, el derecho institucional a falsificar documentos.</p>
+
+  <hr class="divider">
+
+  <footer class="colophon">
+    <p><strong>Fuentes citadas:</strong> Murray N. Rothbard, <em>El hombre, la economía y el Estado. Tratado sobre principios de economía</em>, Unión Editorial, trad. Norberto R. Sedaca, 2 vols., 2011-2013. Murray N. Rothbard, <em>Qué ha hecho el gobierno de nuestro dinero</em>, edición libre en circulación. Las traducciones del corpus son las canónicas de Unión Editorial; los pasajes citados respetan la voz del traductor.</p>
+    <p><strong>Marco analítico:</strong> aplicación del aparato conceptual rothbardiano —praxeología, ética iusnaturalista de la propiedad, teoría de la banca como contrato, crítica al Estado como agencia coercitiva— al análisis comparado de regímenes monetarios contemporáneos. La fila de auditabilidad constituye extrapolación al caso de Bitcoin, no contenido literal del corpus.</p>
+  </footer>
+
+</article>
+
+</body>
+</html>
